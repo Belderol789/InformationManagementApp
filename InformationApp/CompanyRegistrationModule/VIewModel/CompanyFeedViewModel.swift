@@ -6,3 +6,16 @@
 //
 
 import Foundation
+
+final class CompanyFeedViewModel {
+    
+    let databaseService: DatabaseService
+    
+    init(database: DatabaseService) {
+        self.databaseService = database
+    }
+    
+    
+    
+    
+}

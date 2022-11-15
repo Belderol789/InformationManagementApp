@@ -10,6 +10,8 @@
 		591EB24F31BFA17680E9B1E5 /* Pods_InformationApp_InformationAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E133AB5257A9ED17EFCAC49 /* Pods_InformationApp_InformationAppUITests.framework */; };
 		5FFC9EA2DBEA70C9629A3F93 /* Pods_InformationAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1321575144C2911AE00488DD /* Pods_InformationAppTests.framework */; };
 		793F54F3AA599FB89F98433C /* Pods_InformationApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCF892EC53BD2F0ABC1E0052 /* Pods_InformationApp.framework */; };
+		BA133EB32922495400F54F05 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA133EB22922495400F54F05 /* Extensions.swift */; };
+		BA133EB42922495400F54F05 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA133EB22922495400F54F05 /* Extensions.swift */; };
 		BA6B0BEE291DDFF600AFFE9B /* DatabaseUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6B0BED291DDFF600AFFE9B /* DatabaseUnitTests.swift */; };
 		BA6B0BF0291EBB4D00AFFE9B /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6B0BEF291EBB4D00AFFE9B /* R.generated.swift */; };
 		BA6B0BF5291EC0FA00AFFE9B /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6B0BF4291EC0FA00AFFE9B /* Company.swift */; };
@@ -54,6 +56,7 @@
 		2FC37B95BF7C5A4A7853E901 /* Pods-InformationApp-InformationAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InformationApp-InformationAppUITests.release.xcconfig"; path = "Target Support Files/Pods-InformationApp-InformationAppUITests/Pods-InformationApp-InformationAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		61B87EF448E1D426FD7FD4AC /* Pods-InformationApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InformationApp.release.xcconfig"; path = "Target Support Files/Pods-InformationApp/Pods-InformationApp.release.xcconfig"; sourceTree = "<group>"; };
 		795C0BB0DB57F66FBA46CF87 /* Pods-InformationApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InformationApp.debug.xcconfig"; path = "Target Support Files/Pods-InformationApp/Pods-InformationApp.debug.xcconfig"; sourceTree = "<group>"; };
+		BA133EB22922495400F54F05 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		BA6B0BED291DDFF600AFFE9B /* DatabaseUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseUnitTests.swift; sourceTree = "<group>"; };
 		BA6B0BEF291EBB4D00AFFE9B /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		BA6B0BF4291EC0FA00AFFE9B /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
@@ -128,11 +131,21 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		BA6B0BF6291EC14400AFFE9B /* Models */ = {
+		BA133EB12922450E00F54F05 /* ServiceLayer */ = {
 			isa = PBXGroup;
 			children = (
+				BA87005C291F18A900FDEFD3 /* DatabaseService.swift */,
 			);
-			path = Models;
+			path = ServiceLayer;
+			sourceTree = "<group>";
+		};
+		BA133EB52922495700F54F05 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				BA8DE448291D9FC700AA0348 /* Assets.xcassets */,
+				BA133EB22922495400F54F05 /* Extensions.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		BA87004C291EC8FA00FDEFD3 /* CompanyRegistrationModule */ = {
@@ -214,13 +227,12 @@
 				BA6B0BEF291EBB4D00AFFE9B /* R.generated.swift */,
 				BA8DE43F291D9FC200AA0348 /* AppDelegate.swift */,
 				BA8DE441291D9FC200AA0348 /* SceneDelegate.swift */,
+				BA8DE44D291D9FC700AA0348 /* Info.plist */,
 				BA87004C291EC8FA00FDEFD3 /* CompanyRegistrationModule */,
 				BA87005B291F182E00FDEFD3 /* Storyboards */,
-				BA8DE448291D9FC700AA0348 /* Assets.xcassets */,
-				BA8DE44D291D9FC700AA0348 /* Info.plist */,
 				BA87005A291F181900FDEFD3 /* EmployeeManagementModule */,
-				BA6B0BF6291EC14400AFFE9B /* Models */,
-				BA87005C291F18A900FDEFD3 /* DatabaseService.swift */,
+				BA133EB12922450E00F54F05 /* ServiceLayer */,
+				BA133EB52922495700F54F05 /* Utilities */,
 			);
 			path = InformationApp;
 			sourceTree = "<group>";
@@ -501,6 +513,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA8DE444291D9FC200AA0348 /* CompanyFeedViewController.swift in Sources */,
+				BA133EB32922495400F54F05 /* Extensions.swift in Sources */,
 				BA870050291EC97B00FDEFD3 /* CompanyFeedViewModel.swift in Sources */,
 				BA6B0BFB291EC25E00AFFE9B /* Employee.swift in Sources */,
 				BA8DE440291D9FC200AA0348 /* AppDelegate.swift in Sources */,
@@ -516,6 +529,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA870051291EC97B00FDEFD3 /* CompanyFeedViewModel.swift in Sources */,
+				BA133EB42922495400F54F05 /* Extensions.swift in Sources */,
 				BA6B0BEE291DDFF600AFFE9B /* DatabaseUnitTests.swift in Sources */,
 				BA87005E291F18A900FDEFD3 /* DatabaseService.swift in Sources */,
 				BA87005F291F222700FDEFD3 /* Employee.swift in Sources */,

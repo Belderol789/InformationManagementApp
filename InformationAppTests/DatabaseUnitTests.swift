@@ -8,7 +8,7 @@
 import XCTest
 
 final class DatabaseUnitTests: XCTestCase {
-
+    
     var dataService: DatabaseService?
     
     override func setUpWithError() throws {
@@ -59,32 +59,79 @@ final class DatabaseUnitTests: XCTestCase {
         wait(for: [expectation], timeout: 3.0)
     }
     
-    func test_convert_model_to_jsonString() {
-        let jsonString = """
-                        [
-                            {
-                                "name": "Company B",
-                                "id": "1234567",
-                                "employees": [
-                                    {
-                                    "id": "123456",
-                                    "name": "Employee A",
-                                    "isEmployed": true
-                                    },
-                                    {
-                                    "id": "1234567",
-                                    "name": "Employee B",
-                                    "isEmployed": false
-                                    }
-                                ]
-                            }
-                        ]
-        """
-        let employees: [Employee] = [Employee(id: "123456", name: "Employee A", isEmployed: true), Employee(id: "1234567", name: "Employee B", isEmployed: false)]
-        let company = Company(id: "1234567", name: "Company B", employees: employees)
-        self.dataService?.convertModelToJSON(model: company, completed: { json in
-            XCTAssertNotNil(json)
-            XCTAssertEqual(json, jsonString)
+    func test_saving_of_json_data() {
+        let arrayOfCompanies = [Company(id: "123",
+                                        name: "Company A",
+                                        employees: [Employee(id: "123",
+                                                             name: "Employee A",
+                                                             isEmployed: true)]),
+                                Company(id: "456",
+                                        name: "Company B",
+                                        employees: []),
+                                Company(id: "789",
+                                        name: "Company C",
+                                        employees: [Employee(id: "456",
+                                                             name: "Employee B",
+                                                             isEmployed: true),
+                                                    Employee(id: "789",
+                                                             name: "Employee C",
+                                                             isEmployed: false)])]
+        self.dataService?.saveModelDetails(arrayOfCompanies, fileName: "Companies.json", completion: { success in
+            XCTAssertTrue(success)
+        })
+    }
+    
+    func test_retrieve_json_data() {
+        let arrayOfCompanies = [Company(id: "123",
+                                        name: "Company A",
+                                        employees: [Employee(id: "123",
+                                                             name: "Employee A",
+                                                             isEmployed: true)]),
+                                Company(id: "456",
+                                        name: "Company B",
+                                        employees: []),
+                                Company(id: "789",
+                                        name: "Company C",
+                                        employees: [Employee(id: "456",
+                                                             name: "Employee B",
+                                                             isEmployed: true),
+                                                    Employee(id: "789",
+                                                             name: "Employee C",
+                                                             isEmployed: false)])]
+        self.dataService?.saveModelDetails(arrayOfCompanies, fileName: "Companies.json", completion: { success in
+            XCTAssertTrue(success)
+        })
+    }
+    
+    func test_convert_data_to_models() {
+        let arrayOfCompanies = [Company(id: "123",
+                                        name: "Company A",
+                                        employees: [Employee(id: "123",
+                                                             name: "Employee A",
+                                                             isEmployed: true)]),
+                                Company(id: "456",
+                                        name: "Company B",
+                                        employees: []),
+                                Company(id: "789",
+                                        name: "Company C",
+                                        employees: [Employee(id: "456",
+                                                             name: "Employee B",
+                                                             isEmployed: true),
+                                                    Employee(id: "789",
+                                                             name: "Employee C",
+                                                             isEmployed: false)])]
+        self.dataService?.saveModelDetails(arrayOfCompanies, fileName: "Companies.json", completion: { success in
+            XCTAssertTrue(success)
+            self.dataService?.retrieveModelFromFile(fileName: "Companies.json", { (result: Result<[Company], Error>) in
+                switch result {
+                case .success(let companies):
+                    XCTAssertNotEqual(companies.count, 0)
+                    XCTAssertNotNil(companies.first)
+                    XCTAssertEqual(companies.last?.name, "Company C")
+                case .failure(let error):
+                    XCTFail("Failed to encode json \(error.localizedDescription)")
+                }
+            })
         })
     }
     
